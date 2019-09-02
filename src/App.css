@@ -1,33 +1,58 @@
-.App {
-  text-align: center;
+/* colors */
+:root {
+  --theme: #004d40;
+  --bg-grey: #f5f5f5;
+  --border: #e0e0e0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+/* layout styles */
+nav {
+  background: var(--theme);
+}
+nav .brand {
+  font-size: 1.5rem;
+  margin-left: 1.5rem;
+}
+nav .brand span {
+  font-weight: 700;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.section-books {
+  background: var(--bg-grey);
+  border-bottom: 1px solid var(--border);
 }
 
-.App-link {
-  color: #61dafb;
+/* book styles */
+.card.book {
+  display: grid;
+  grid-template-areas: 'image details delete';
+  grid-template-columns: 80px 1fr 40px;
+  padding: 1rem;
+}
+.book-image {
+  grid-area: image;
+}
+.book-image img {
+  max-width: 50px;
+}
+.book-details {
+  grid-area: details;
+  color: #616161;
+}
+.book-title {
+  font-weight: 700;
+}
+.book-author {
+  font-size: 0.8rem;
+}
+.book-delete {
+  grid-area: delete;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* form styles */
+form .input-field {
+  margin: 2rem 0;
 }
