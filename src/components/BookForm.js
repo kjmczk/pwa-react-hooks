@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { BookContext } from '../contexts/BookContext';
+import React, { useState } from 'react';
+// import { BookContext } from '../contexts/BookContext';
+import { db } from '../firebase';
 
 const BookForm = () => {
-  const { addBook } = useContext(BookContext);
+  // const { addBook } = useContext(BookContext);
 
   const [book, setBook] = useState({
     title: '',
@@ -11,7 +12,7 @@ const BookForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    addBook(book);
+    db.collection('books').add(book);
     setBook({
       title: '',
       author: ''

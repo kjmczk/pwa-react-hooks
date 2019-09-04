@@ -1,9 +1,31 @@
-import React, { useContext } from 'react';
-import { BookContext } from '../contexts/BookContext';
+import React, { useState, useEffect } from 'react';
+// import { BookContext } from '../contexts/BookContext';
+import { db } from '../firebase';
 import bookThumb from '../book.png';
 
 const BookList = () => {
-  const { books, deleteBook } = useContext(BookContext);
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    console.log('mounted');
+    const fetchBooks = db.collection('books').onSnapshot(snapshot => {
+      const allBooks = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setBooks(allBooks);
+    });
+    return () => {
+      console.log('unmounting...');
+      fetchBooks();
+    };
+  }, []);
+
+  const deleteBook = id => {
+    db.collection('books')
+      .doc(id)
+      .delete();
+  };
 
   return (
     <div className='section section-books'>
@@ -23,6 +45,7 @@ const BookList = () => {
                 <div
                   onClick={() => deleteBook(book.id)}
                   className='book-delete'
+                  style={{ cursor: 'pointer' }}
                 >
                   <i className='material-icons'>delete</i>
                 </div>
