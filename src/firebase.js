@@ -21,11 +21,11 @@ firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 
 db.enablePersistence().catch(err => {
-  if (err.code == 'failed-precondition') {
+  if (err.code === 'failed-precondition') {
     // Multiple tabs open, persistence can only be enabled
     // in one tab at a a time.
     console.log('persistance failed');
-  } else if (err.code == 'unimplemented') {
+  } else if (err.code === 'unimplemented') {
     // The current browser does not support all of the
     // features required to enable persistence
     console.log('persistance not available');
