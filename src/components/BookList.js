@@ -8,7 +8,7 @@ const BookList = () => {
 
   useEffect(() => {
     console.log('effect');
-    db.collection('books').onSnapshot(snapshot => {
+    const unsub = db.collection('books').onSnapshot(snapshot => {
       const allBooks = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -17,6 +17,7 @@ const BookList = () => {
     });
     return () => {
       console.log('cleanup');
+      unsub();
     };
   }, []);
 
