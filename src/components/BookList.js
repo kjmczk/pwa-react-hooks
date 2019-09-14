@@ -7,8 +7,8 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    console.log('mounted');
-    const fetchBooks = db.collection('books').onSnapshot(snapshot => {
+    console.log('effect');
+    db.collection('books').onSnapshot(snapshot => {
       const allBooks = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -16,8 +16,7 @@ const BookList = () => {
       setBooks(allBooks);
     });
     return () => {
-      console.log('unmounting...');
-      fetchBooks();
+      console.log('cleanup');
     };
   }, []);
 
