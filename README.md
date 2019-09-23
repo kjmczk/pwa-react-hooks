@@ -1,4 +1,4 @@
-# PWA React Hooks
+This project was created in the [Build a React PWA (Progressive Web App)](https://medium.com/technest/build-a-react-pwa-progressive-web-app-e26e4b39186a) tutorial.
 
 ## Quick Start
 
